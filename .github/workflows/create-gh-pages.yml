@@ -1,0 +1,40 @@
+name: Create gh-pages branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  create-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if gh-pages branch exists
+        id: check_branch
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages; then
+            echo "branch_exists=true" >> $GITHUB_OUTPUT
+            echo "Branch gh-pages already exists."
+          else
+            echo "branch_exists=false" >> $GITHUB_OUTPUT
+            echo "Branch gh-pages does not exist."
+          fi
+
+      - name: Create and push gh-pages branch
+        if: steps.check_branch.outputs.branch_exists == 'false'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan gh-pages
+          git rm -rf .
+          echo '<!DOCTYPE html><html><body><h1>GitHub Pages</h1><p>This branch is for GitHub Pages deployment.</p></body></html>' > index.html
+          git add index.html
+          git commit -m "Initialize gh-pages branch"
+          git push origin gh-pages
