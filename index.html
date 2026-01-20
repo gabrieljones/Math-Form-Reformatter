@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Image Extractor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#673ab7">
+</head>
+<body>
+
+    <header class="no-print">
+        <h1>Form Image Extractor</h1>
+        <p>Paste a Google Form URL (e.g., docs.google.com/forms/...) to extract images for printing.</p>
+
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="Paste Google Form URL here...">
+            <button id="extractBtn">Extract Images</button>
+        </div>
+        <p class="status" id="statusMsg"></p>
+        <button id="printBtn" class="hidden" onclick="window.print()">Print Page</button>
+    </header>
+
+    <main id="imageContainer" class="print-area">
+        </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Service Worker Registered'));
+        }
+    </script>
+</body>
+</html>
