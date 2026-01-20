@@ -11,6 +11,22 @@ A Progressive Web App (PWA) that takes a Google Form URL and extracts the five l
 
 ## How to use this
 * **Hosting**: PWAs must be served over HTTPS. This repository is configured to deploy to GitHub Pages automatically via GitHub Actions.
+
+## Deployment Configuration
+
+This project is configured to deploy automatically to GitHub Pages using the `.github/workflows/deploy.yml` workflow when changes are pushed to the `main` branch.
+
+### Troubleshooting: "Branch 'main' is not allowed to deploy"
+If you encounter the error `Branch "main" is not allowed to deploy to github-pages due to environment protection rules` in the GitHub Actions tab, follow these steps:
+
+1. Go to your repository **Settings**.
+2. Click on **Environments** in the left sidebar.
+3. Click on the **github-pages** environment.
+4. Look for "Deployment branches and tags".
+5. Click **Add deployment branch or tag rule**.
+6. Select **Selected branches**, add `main`, and save.
+   * Alternatively, if there is an existing rule restricting deployment to another branch (e.g., `gh-pages`), you can modify or remove it.
+
 * **Usage**:
   * Open the site.
   * Paste the full URL (e.g., `https://docs.google.com/forms/d/e/..../viewform`).
