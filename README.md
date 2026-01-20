@@ -10,7 +10,7 @@ A Progressive Web App (PWA) that takes a Google Form URL and extracts the five l
 - `sw.js`: Service Worker for PWA capabilities
 
 ## How to use this
-* **Hosting**: PWAs must be served over HTTPS. The easiest way to run this for free is to upload the files to Netlify Drop or GitHub Pages.
+* **Hosting**: PWAs must be served over HTTPS. This repository is configured to deploy to GitHub Pages automatically via GitHub Actions.
 * **Usage**:
   * Open the site.
   * Paste the full URL (e.g., `https://docs.google.com/forms/d/e/..../viewform`).
